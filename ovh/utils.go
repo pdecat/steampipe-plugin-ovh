@@ -3,6 +3,7 @@ package ovh
 import (
 	"context"
 	"errors"
+	"net/http"
 
 	"github.com/ovh/go-ovh/ovh"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
@@ -48,12 +49,23 @@ func connect(ctx context.Context, d *plugin.QueryData) (*ovh.Client, error) {
 		return nil, errors.New("'endpoint' must be set in the connection configuration. Edit your connection configuration file and then restart Steampipe")
 	}
 
-	client, _ := ovh.NewClient(
+	client, err := ovh.NewClient(
 		endpoint,
 		applicationKey,
 		applicationSecret,
 		consumerKey,
 	)
+	if err != nil {
+		plugin.Logger(ctx).Error("ovh.connect", "client_creation_error", err)
+		return nil, err
+	}
+
+	// Set our custom transport for HTTP request/response tracing
+	httpClient := &http.Client{
+		Transport: http.DefaultTransport,
+	}
+	httpClient.Transport = NewTransport("OVH", ctx, httpClient.Transport, IsDebugOrHigher(ctx))
+	client.Client = httpClient
 
 	// Save to cache
 	d.ConnectionManager.Cache.Set(cacheKey, client)
