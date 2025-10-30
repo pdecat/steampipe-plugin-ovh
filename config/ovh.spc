@@ -17,4 +17,13 @@ connection "ovh" {
     # 'kimsufi-eu' for Kimsufi Europe API
     # 'kimsufi-ca' for Kimsufi Canada API
     endpoint = "ovh-eu"
+
+    # List of regions to query. Supports wildcards.
+    # Defaults to all regions ("*") if not specified.
+    # Examples:
+    # regions = ["GRA5"]                    # Single region
+    # regions = ["GRA5", "SBG3", "BHS5"]    # Multiple specific regions
+    # regions = ["GRA*"]                    # All GRA regions (GRA1, GRA5, GRA7, etc.)
+    # regions = ["GRA*", "SBG*", "BHS*"]    # Multiple location wildcards
+    # regions = ["*"]                       # All regions (default)
 }
