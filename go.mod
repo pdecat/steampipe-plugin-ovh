@@ -1,4 +1,4 @@
-module github.com/francois2metz/steampipe-plugin-ovh
+module github.com/pdecat/steampipe-plugin-ovh
 
 go 1.26.0
 
