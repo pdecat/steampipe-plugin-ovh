@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/francois2metz/steampipe-plugin-ovh/ovh"
+	"github.com/pdecat/steampipe-plugin-ovh/ovh"
 	"github.com/turbot/steampipe-plugin-sdk/v6/plugin"
 )
 
