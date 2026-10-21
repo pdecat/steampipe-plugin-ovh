@@ -143,4 +143,4 @@ require (
 
 replace github.com/turbot/go-kit => github.com/pdecat/go-kit v1.3.1-dev1
 
-replace github.com/turbot/steampipe-plugin-sdk/v6 => github.com/pdecat/steampipe-plugin-sdk/v6 v6.1.1-dev2
+replace github.com/turbot/steampipe-plugin-sdk/v6 => github.com/pdecat/steampipe-plugin-sdk/v6 v6.1.1-dev3
