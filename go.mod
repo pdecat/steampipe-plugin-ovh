@@ -6,6 +6,7 @@ require (
 	github.com/hashicorp/go-hclog v1.6.3
 	github.com/ovh/go-ovh v1.9.0
 	github.com/turbot/steampipe-plugin-sdk/v6 v6.1.0
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
@@ -136,7 +137,6 @@ require (
 	google.golang.org/grpc v1.83.2 // indirect
 	google.golang.org/protobuf v1.36.12 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
 replace github.com/turbot/steampipe-plugin-sdk/v6 => github.com/pdecat/steampipe-plugin-sdk/v6 v6.2.2-dev1
