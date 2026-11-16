@@ -22,6 +22,14 @@ func tableOvhCloudManagedKubernetes() *plugin.Table {
 			KeyColumns: plugin.AllColumns([]string{"project_id", "id"}),
 			Hydrate:    getManagedKubernetes,
 		},
+		HydrateConfig: []plugin.HydrateConfig{
+			{
+				Func: getManagedKubernetesCertificateAuthority,
+				// Reading the admin kubeconfig is a privileged call: credentials limited to
+				// read-only rules may be refused it, which must only leave the column null.
+				IgnoreConfig: &plugin.IgnoreConfig{ShouldIgnoreErrorFunc: shouldIgnoreKubeconfigError},
+			},
+		},
 		Columns: []*plugin.Column{
 			{
 				Name:        "project_id",
@@ -74,6 +82,13 @@ func tableOvhCloudManagedKubernetes() *plugin.Table {
 				Type:        proto.ColumnType_JSON,
 				Transform:   transform.FromField("CurrentState.APIServer"),
 				Description: "API server of the cluster: public endpoint, authorized IPs and admission plugins.",
+			},
+			{
+				Name:        "certificate_authority",
+				Type:        proto.ColumnType_STRING,
+				Hydrate:     getManagedKubernetesCertificateAuthority,
+				Transform:   transform.FromValue(),
+				Description: "Base64-encoded PEM certificate of the cluster certificate authority, as the certificate-authority-data of a kubeconfig. Read from the admin kubeconfig, of which nothing else is exposed: null when the credentials may not read it.",
 			},
 			{
 				Name:        "authentication",
