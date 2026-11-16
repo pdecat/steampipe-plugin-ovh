@@ -27,6 +27,8 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"ovh_cloud_flavor":          tableOvhCloudFlavor(),
 			"ovh_cloud_image":           tableOvhCloudImage(),
 			"ovh_cloud_instance":        tableOvhCloudInstance(),
+			"ovh_cloud_kube":            tableOvhCloudKube(),
+			"ovh_cloud_kube_nodepool":   tableOvhCloudKubeNodePool(),
 			"ovh_cloud_loadbalancer":    tableOvhCloudLoadBalancer(),
 			"ovh_cloud_postgres":        tableOvhCloudPostgres(),
 			"ovh_cloud_project":         tableOvhCloudProject(),
