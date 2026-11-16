@@ -29,6 +29,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"ovh_cloud_instance":                    tableOvhCloudInstance(),
 			"ovh_cloud_loadbalancer":                tableOvhCloudLoadBalancer(),
 			"ovh_cloud_managed_kubernetes":          tableOvhCloudManagedKubernetes(),
+			"ovh_cloud_managed_kubernetes_node":     tableOvhCloudManagedKubernetesNode(),
 			"ovh_cloud_managed_kubernetes_nodepool": tableOvhCloudManagedKubernetesNodePool(),
 			"ovh_cloud_postgres":                    tableOvhCloudPostgres(),
 			"ovh_cloud_project":                     tableOvhCloudProject(),
