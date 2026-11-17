@@ -91,7 +91,7 @@ func connect(ctx context.Context, d *plugin.QueryData) (*ovh.Client, error) {
 	client.Client = httpClient
 
 	// Save to cache
-	err := d.ConnectionCache.Set(ctx, cacheKey, client)
+	err = d.ConnectionCache.Set(ctx, cacheKey, client)
 	if err != nil {
 		return nil, err
 	}
