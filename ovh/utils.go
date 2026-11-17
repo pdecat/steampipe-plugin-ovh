@@ -85,6 +85,9 @@ func connect(ctx context.Context, d *plugin.QueryData) (*ovh.Client, error) {
 		Transport: http.DefaultTransport,
 	}
 	httpClient.Transport = NewTransport("OVH", ctx, httpClient.Transport, IsDebugOrHigher(ctx))
+	// Retry the requests the API answers with a transient error, outside the tracing transport so
+	// that each attempt is traced
+	httpClient.Transport = newRetryTransport(httpClient.Transport)
 	client.Client = httpClient
 
 	// Save to cache
